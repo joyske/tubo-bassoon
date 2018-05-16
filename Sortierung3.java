@@ -344,7 +344,7 @@ public class Sortierung3
 			}
 			//nun wird QuickSort auf das Teilarray [l...j] mit den Werten <= Pivot 
 			Quicksort(arr,l,j);
-			//und das Teilarray [i...r] mit den Werten >= Pivot 
+			//und das Teilarray [i...r] mit den Werten >= Pivot aufgerufen 
 			Quicksort(arr,i,r);
 		}
 			
