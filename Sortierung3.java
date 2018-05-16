@@ -39,6 +39,7 @@ public class Sortierung3
 	public static void measure(int[] array, int modus)
 	{
 		long tStart, tEnd, msecs;
+		String sortalgo;
 		//Modus 0 = Laufzeit von InsertionSort soll gemessen werden
 		if(modus == 0)
 		{
@@ -47,6 +48,7 @@ public class Sortierung3
 			insertionSort(array);
 			//Ende der Messung
 			tEnd = System.currentTimeMillis();
+			sortalgo = "InsertionSort";
 		}
 		else if(modus==1)
 		{
@@ -54,12 +56,14 @@ public class Sortierung3
 			tStart = System.currentTimeMillis();
 			mergeSort(array);
 			tEnd = System.currentTimeMillis();
+			sortalgo = "MergeSort";
 		}
 		else
 		{
 			tStart = System.currentTimeMillis();
 			quickSort(array);
 			tEnd = System.currentTimeMillis();
+			sortalgo = "QuickSort";
 			
 		}
 		if(array.length <= 100)
@@ -71,7 +75,8 @@ public class Sortierung3
 			}
 			System.out.println();
 		}
-		System.out.println("Laufzeit: " + (msecs = tEnd - tStart));
+		 
+		System.out.println("Laufzeit von: " + sortalgo + " ist: " + (msecs = tEnd - tStart));
 	}
 	
 	public static void sorted(int[] array)
@@ -116,7 +121,7 @@ public class Sortierung3
 					//return beendet an dieser Stelle das Programm
 					return;
 				}
-				//die zweite Eingabe soll immer ein String, mit den Werten 'insert', 'merge' oder 'quick' sein
+				//die zweite Eingabe soll immer ein String, mit den Werten 'insert', 'merge', 'quick' oder 'all' sein
 				String b = args[1];
 				int[] array = new int[a];
 				//bei zwei Eingaben wird Array mit Zufallszahlen erstellt
@@ -136,11 +141,17 @@ public class Sortierung3
 						//erzeugt mit zufälligen Zahlen gefüllten Array und sortiert direkt mit QuickSort (Modus != 0 || 1 )
 						makeRandomArray(array, 2);
 					}
-					
+					else if(args[1].equals("all"))
+					{
+						//sortiert und misst die Laufzeit für alle Sortier Algorithmen
+						makeRandomArray(array, 0);
+						makeRandomArray(array, 1);
+						makeRandomArray(array, 2);		
+					}
 					else
 					{
-						//bei anderen Eingaben als 'insert', 'merge' oder 'quick' geben wir den Fehler aus
-						System.out.println("Bitte 'insert', 'merge' oder 'quick' eingeben!");
+						//bei anderen Eingaben als 'insert', 'merge', 'quick' oder 'all' geben wir den Fehler aus
+						System.out.println("Bitte 'insert', 'merge', 'quick' 'oder' eingeben!");
 						return;
 					}
 				}
@@ -172,7 +183,14 @@ public class Sortierung3
 							{
 								//sortiert und misst die Laufzeit für QuickSort
 								measure(array, 2);
-							}	
+							}
+							else if(args[1].equals("all"))
+							{
+								//sortiert und misst die Laufzeit für alle Sortier Algorithmen
+								measure(array, 0);
+								measure(array, 1);
+								measure(array, 2);
+							}
 							sorted(array);
 							break;
 						case "ab" : 
@@ -197,6 +215,13 @@ public class Sortierung3
 								//sortiert und misst die Laufzeit für QuickSort
 								measure(array, 2);
 							}
+							else if(args[1].equals("all"))
+							{
+								//sortiert und misst die Laufzeit für alle Sortier Algorithmen
+								measure(array, 0);
+								measure(array, 1);
+								measure(array, 2);
+							}
 							sorted(array);
 							break;
 						case "rand" :
@@ -212,6 +237,13 @@ public class Sortierung3
 							else if(args[1].equals("quick"))
 							{
 								makeRandomArray(array,2);
+							}
+							else if(args[1].equals("all"))
+							{
+								//sortiert und misst die Laufzeit für alle Sortier Algorithmen
+								measure(array, 0);
+								measure(array, 1);
+								measure(array, 2);	
 							}
 							break;
 						//wurde etwas anderes als 'auf', 'ab', 'rand' angegeben, erzeugen wir einen Fehler
