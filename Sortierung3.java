@@ -96,7 +96,7 @@ public class Sortierung3
 		{
 			array[i] = numberGenerator.nextInt();
 		}
-		//sortiert und misst Laufzeit für den Array bei angegebenen Modus (0 = InsertionSort, sonst = MergeSort)
+		//sortiert und misst Laufzeit für den Array bei angegebenen Modus (0 = InsertionSort, 1 = MergeSort, sonst = QuickSort)
 		measure(array, modus);
 		//gibt einen kurzen Text aus, ob Feld sortiert ist
 		sorted(array);
@@ -110,15 +110,13 @@ public class Sortierung3
 			if(args.length >= 2 && args.length <= 3)
 			{
 				int a = Integer.parseInt(args[0]);
-				//assert args[0] > 0: "Du musst die Größe des Feldes eingeben!";
-				//a gibt die Länge des Arrays an, diese darf weder 0 noch negativ sein
 				if(a <= 0)
 				{
 					System.out.println("Bitte eine Zahl groeßer als 0 eingeben!");
 					//return beendet an dieser Stelle das Programm
 					return;
 				}
-				//die zweite Eingabe soll immer ein String, mit den Werten 'insert' oder 'merge', sein
+				//die zweite Eingabe soll immer ein String, mit den Werten 'insert', 'merge' oder 'quick' sein
 				String b = args[1];
 				int[] array = new int[a];
 				//bei zwei Eingaben wird Array mit Zufallszahlen erstellt
@@ -126,23 +124,23 @@ public class Sortierung3
 				{
 					if(args[1].equals("insert"))
 					{
-						//erzeugt mit zufälligen Zahlen gefüllten Array und sortiert direkt mit InsertionSort (Modus = 0)
+						//erzeugt mit zufälligen Zahlen gefüllten Array und sortiert direkt mit InsertionSort (Modus = 0) = 0)
 						makeRandomArray(array, 0);
 					}
 					else if(args[1].equals("merge"))
 					{
-						//erzeugt mit zufälligen Zahlen gefüllten Array und sortiert direkt mit MergeSort (Modus != 0)
+						//erzeugt mit zufälligen Zahlen gefüllten Array und sortiert direkt mit MergeSort (Modus = 1)
 						makeRandomArray(array, 1);
 					}else if(args[1].equals("quick"))
 					{
-						//erzeugt mit zufälligen Zahlen gefüllten Array und sortiert direkt mit MergeSort (Modus != 0)
+						//erzeugt mit zufälligen Zahlen gefüllten Array und sortiert direkt mit QuickSort (Modus != 0 || 1 )
 						makeRandomArray(array, 2);
 					}
 					
 					else
 					{
-						//bei anderen Eingaben als 'insert' oder 'merge' geben wir den Fehler aus
-						System.out.println("Bitte 'insert' oder 'merge' eingeben!");
+						//bei anderen Eingaben als 'insert', 'merge' oder 'quick' geben wir den Fehler aus
+						System.out.println("Bitte 'insert', 'merge' oder 'quick' eingeben!");
 						return;
 					}
 				}
@@ -159,7 +157,7 @@ public class Sortierung3
 								//Werte von vorne nach hinten einfügen
 								array[i] = i+1;
 							}
-							//führen je nach Eingabe InsertionSort oder MergeSort auf den Array aus
+							//führen je nach Eingabe InsertionSort, MergeSort oder QuickSort auf den Array aus
 							if(args[1].equals("insert"))
 							{
 								//sortiert und misst die Laufzeit für InsertionSort
@@ -170,6 +168,11 @@ public class Sortierung3
 								//sortiert und misst die Laufzeit für MergeSort
 								measure(array, 1);
 							}
+							else if(args[1].equals("quick"))
+							{
+								//sortiert und misst die Laufzeit für QuickSort
+								measure(array, 2);
+							}	
 							sorted(array);
 							break;
 						case "ab" : 
@@ -180,7 +183,7 @@ public class Sortierung3
 								array[j] = a;
 								a--;
 							}
-							//führen je nach Eingabe InsertionSort oder MergeSort auf den Array aus
+							//führen je nach Eingabe InsertionSort, MergeSort oder QuickSort auf den Array aus
 							if(args[1].equals("insert"))
 							{
 								measure(array, 0);
@@ -188,6 +191,11 @@ public class Sortierung3
 							else if(args[1].equals("merge"))
 							{
 								measure(array, 1);
+							}
+							else if(args[1].equals("quick"))
+							{
+								//sortiert und misst die Laufzeit für QuickSort
+								measure(array, 2);
 							}
 							sorted(array);
 							break;
@@ -284,41 +292,59 @@ public class Sortierung3
 	}
 	public static void quickSort(int[] array)
 	{
-		
+		//Ruft QuickSort auf mit 0 = kleinster Index und die Länge vom Feld-1 = größter Index
 		Quicksort(array, 0, array.length-1);
+		//stellt sicher, dass das Feld nach quickSort auch wirklich richtig sortiert ist
 		assert isSorted(array);
 	}
 	
 	public static void Quicksort(int[]arr, int l, int r)
 	{
+		//Wenn es mindestens 2 Elemente zum sortieren gibt...
 		if(l<r)
 		{
+			//...wird i auf den kleinsten, 
 			int i=l;
+			//j auf den größten
 			int j=r;
+			//und unser Pivot-Element auf den mittleren Index gesetzt
 			int pivot=arr[(l+r)/2];
 			
+			//wir gehen durch das ganze Feld 
 			while(i<=j)
 			{
+				//...und vergleichen jedes Element mit unserem Pivot 
 				while(arr[i]<pivot)
 				{
+					//alle Elemente < Pivot werden links, 
 					i=i+1;
 				}
 				while(arr[j]>pivot)
 				{
+					//...und alle Elemente > Pivot rechts eingeordnet 
 					j=j-1;
 					
 				}
+				
+				 
+				//wenn i auf Pivot zeigt und j auf die Stelle danach
+				//oder j auf Pivot zeigt und i auf die Stelle davor
+				//oder i und j beide auf das Pivot Element zeigen
 				if(i<=j)
 				{
+					//wird der Wert an der Stelle i mit dem Wert an der Stelle j vertauscht   
 					int tmp=arr[i];
 					arr[i]=arr[j];
 					arr[j]=tmp;
+					//und i hoch- und j runtergesetzt 
 					i=i+1;
 					j=j-1;
 					
 				}
 			}
+			//nun wird QuickSort auf das Teilarray [l...j] mit den Werten <= Pivot 
 			Quicksort(arr,l,j);
+			//und das Teilarray [i...r] mit den Werten >= Pivot 
 			Quicksort(arr,i,r);
 		}
 			
