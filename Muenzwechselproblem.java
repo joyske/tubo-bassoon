@@ -2,6 +2,7 @@ public class Muenzwechselproblem
 {
 	public static void main(String[]args)
 	{
+		try {
 		//es müssen genau 2 Eingaben eingelesen werden können... 
 		if(args.length==2)
 		{
@@ -35,6 +36,11 @@ public class Muenzwechselproblem
 		else
 		{
 			System.out.println("Bitte genau zwei Eingaben!");
+		}
+		}
+		catch(NumberFormatException e)
+		{
+			System.out.println("Zweite Eingabe muss eine Zahl sein!");
 		}
 	}
 	
