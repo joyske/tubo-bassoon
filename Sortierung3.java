@@ -237,7 +237,7 @@ public class Sortierung3
 							}
 							else if(args[1].equals("bubble"))
 							{
-							makeRandomArray(array, 3);
+								measure(array, 3);
 							}
 							else if(args[1].equals("all"))
 							{
@@ -264,14 +264,14 @@ public class Sortierung3
 							}
 								else if(args[1].equals("bubble"))
 							{
-							makeRandomArray(array, 3);
+								makeRandomArray(array, 3);
 							}
 							else if(args[1].equals("all"))
 							{
-								measure(array, 0);
-								measure(array, 1);
-								measure(array, 2);
-								measure(array, 3); 
+								makeRandomArray(array, 0);
+								makeRandomArray(array, 1);
+								makeRandomArray(array, 2);
+								makeRandomArray(array, 3); 
 							}
 							break;
 						//wurde etwas anderes als 'auf', 'ab', 'rand' angegeben, erzeugen wir einen Fehler
