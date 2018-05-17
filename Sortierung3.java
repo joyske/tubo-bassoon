@@ -57,12 +57,20 @@ public class Sortierung3
 			tEnd = System.currentTimeMillis();
 			sortalgo = "MergeSort";
 		}
-		else
+		else if(modus==2)
 		{
 			tStart = System.currentTimeMillis();
 			quickSort(array);
 			tEnd = System.currentTimeMillis();
 			sortalgo = "QuickSort";
+			
+		}
+		else 
+		{
+			tStart = System.currentTimeMillis();
+			Bubble(array);
+			tEnd = System.currentTimeMillis();
+			sortalgo = "BubbleSort";
 			
 		}
 		if(array.length <= 100)
@@ -140,12 +148,18 @@ public class Sortierung3
 						//erzeugt mit zufälligen Zahlen gefüllten Array und sortiert direkt mit QuickSort (Modus != 0 || 1 )
 						makeRandomArray(array, 2);
 					}
+					else if(args[1].equals("bubble"))
+					{
+						//erzeugt mit zufälligen Zahlen gefüllten Array und sortiert direkt mit BubbleSort (Modus != 0 || 1 )
+						makeRandomArray(array, 3);
+					}
 					else if(args[1].equals("all"))
 					{
 						//sortiert und misst die Laufzeit für alle Sortier Algorithmen
 						makeRandomArray(array, 0);
 						makeRandomArray(array, 1);
-						makeRandomArray(array, 2);		
+						makeRandomArray(array, 2);
+						makeRandomArray(array, 3);
 					}
 					else
 					{
@@ -380,6 +394,28 @@ public class Sortierung3
 		}
 			
 	}
+	
+	public static void Bubble(int[] arr)
+    	{
+       		 int n=arr.length;
+		//Feld wird von vorne durchlaufen
+       		 for(int i=1;i<n;i++)
+		{
+			//Feld wird von hinten durchlaufen
+            		for(int j=n-1;j>=i;j--)
+           		 {
+				//überprüfen ob variable vor arr[j] größer ist
+               			 if(arr[j-1]>arr[j])
+                		{
+                   			 int tmp=arr[j];
+					//Werte werden getauscht
+                    			arr[j]=arr[j-1];
+                   			 arr[j-1]=tmp;
+               			 }
+           		 }
+		  }
+   	}
+
 }
 
    
