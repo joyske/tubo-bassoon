@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Sortierung3
@@ -76,7 +75,7 @@ public class Sortierung3
 			System.out.println();
 		}
 		 
-		System.out.println("Laufzeit von: " + sortalgo + " ist: " + (msecs = tEnd - tStart));
+		System.out.println("Laufzeit von: " + sortalgo + " ist: " + (float)(msecs = tEnd - tStart)/(float)1000);
 	}
 	
 	public static void sorted(int[] array)
@@ -151,7 +150,7 @@ public class Sortierung3
 					else
 					{
 						//bei anderen Eingaben als 'insert', 'merge', 'quick' oder 'all' geben wir den Fehler aus
-						System.out.println("Bitte 'insert', 'merge', 'quick' 'oder' eingeben!");
+						System.out.println("Bitte 'insert', 'merge', 'quick' oder 'all' eingeben!");
 						return;
 					}
 				}
