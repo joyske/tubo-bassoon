@@ -1,0 +1,39 @@
+Aufgabe 1.1
+
++---+-------------------------------+
+| A |CCCIII   CCCIII CCCIIICCCIII CC|
+| B |   CCCIIIIIIICCCIIIIIII   CCCII|
+| C |      CCC   CIIIII CCC   CIIIII|
++---+-------------------------------+
+
+Aufgabe 1.2
+
+Der runde Robin ist zwar ein sehr faires Scheduling-Verfahren, denn die Ressourcen werden den
+Prozessen gleichmäßig zugeteilt, was ein verhungern verhindert, aber es ist nicht möglich
+Prozesse mit besonders hoher Priorität bevorzugt abzuarbeiten. 
+Dadurch erhalten wir keinen besonders guten Durchsatz, das heißt es werden nicht so viele
+Prozesse wie möglich in möglichst kurzer Zeit abgearbeitet.
+Insbesondere macht die feste Länge der Time-Slices dieses Verfahren sehr unflexibel. 
+
+Aufgabe 2.1
+
+Ein Semaphor dient zur Verwaltung beschränkter Betriebsmittel auf die mehrere
+Prozesse zugreifen wollen. Durch die Operation 'acquire' wird dem Prozess
+die Ressource zugewiesen. Benötigt er sie nicht mehr kann er sie über
+'release' freigeben. Solange der Prozess die Ressource hat, ist diese
+blockiert für andere Prozesse. In dem Fall, dass ein Prozess doch auf 
+eine blockierte Ressource zugreifen will, wird dieser gestoppt und 
+gezwungen auf die Freigabe der Ressource zu warten. 
+In diesem Punkt unterscheidet sich Semaphor vom aktiven Warten.
+Hier wird nicht auf die Freigabe der blockierten Ressource gewartet, sondern
+auch ohne sie  weitergearbeitet. Wird die Ressource jedoch 
+für einen nächsten Schritt benötigt, kann dies zu Fehlfunktionen führen.
+
+Aufgabe 2.2
+
+Kritisch wird der Moment nachdem der erste Prozess die Warteschleife
+verlassen hat und bevor er die Ressource 'locken' konnte, denn 
+zu diesem Zeitpunkt liegt die Ressource frei und ein zweiter Prozess
+könnte dann auf diese zugreifen und sie auch 'locken'.
+Daraus würde folgen, dass wir zwei Prozesse haben, die mit der selben Resource
+arbeiten wollen, was wiederum zu Fehlfunktionen führt.
