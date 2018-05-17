@@ -59,6 +59,7 @@ public class Sortierung3
 		}
 		else if(modus==2)
 		{
+			//Modus 2 = Laufzeit von QuickSort soll gemessen werden 
 			tStart = System.currentTimeMillis();
 			quickSort(array);
 			tEnd = System.currentTimeMillis();
@@ -67,6 +68,7 @@ public class Sortierung3
 		}
 		else 
 		{
+			//Laufzeit von BubbleSort soll gemessen werden 
 			tStart = System.currentTimeMillis();
 			Bubble(array);
 			tEnd = System.currentTimeMillis();
@@ -125,10 +127,10 @@ public class Sortierung3
 				if(a <= 0)
 				{
 					System.out.println("Bitte eine Zahl groeßer als 0 eingeben!");
-					//return beendet an dieser Stelle das Programm
+					//beendet an dieser Stelle das Programm
 					return;
 				}
-				//die zweite Eingabe soll immer ein String, mit den Werten 'insert', 'merge', 'quick' oder 'all' sein
+				//die zweite Eingabe soll immer ein String, mit den Werten 'insert', 'merge', 'quick', 'bubble' oder 'all' sein
 				String b = args[1];
 				int[] array = new int[a];
 				//bei zwei Eingaben wird Array mit Zufallszahlen erstellt
@@ -163,8 +165,8 @@ public class Sortierung3
 					}
 					else
 					{
-						//bei anderen Eingaben als 'insert', 'merge', 'quick' oder 'all' geben wir den Fehler aus
-						System.out.println("Bitte 'insert', 'merge', 'quick' oder 'all' eingeben!");
+						//bei anderen Eingaben als 'insert', 'merge', 'quick', 'bubble' oder 'all' geben wir den Fehler aus
+						System.out.println("Bitte 'insert', 'merge', 'quick', 'bubble' oder 'all' eingeben!");
 						return;
 					}
 				}
@@ -181,7 +183,7 @@ public class Sortierung3
 								//Werte von vorne nach hinten einfügen
 								array[i] = i+1;
 							}
-							//führen je nach Eingabe InsertionSort, MergeSort oder QuickSort auf den Array aus
+							//führen je nach Eingabe InsertionSort, MergeSort, QuickSort, BubbleSort oder alles auf den Array aus
 							if(args[1].equals("insert"))
 							{
 								//sortiert und misst die Laufzeit für InsertionSort
@@ -197,12 +199,18 @@ public class Sortierung3
 								//sortiert und misst die Laufzeit für QuickSort
 								measure(array, 2);
 							}
+							else if(args[1].equals("bubble"))
+							{
+								//sortiert und misst die Laufzeit für BubbleSort
+								measure(array, 3);
+							}
 							else if(args[1].equals("all"))
 							{
 								//sortiert und misst die Laufzeit für alle Sortier Algorithmen
 								measure(array, 0);
 								measure(array, 1);
 								measure(array, 2);
+								measure(array, 3);
 							}
 							sorted(array);
 							break;
@@ -214,7 +222,7 @@ public class Sortierung3
 								array[j] = a;
 								a--;
 							}
-							//führen je nach Eingabe InsertionSort, MergeSort oder QuickSort auf den Array aus
+							//führen je nach Eingabe InsertionSort, MergeSort, QuickSort, BubbleSort oder alles auf den Array aus
 							if(args[1].equals("insert"))
 							{
 								measure(array, 0);
@@ -225,15 +233,18 @@ public class Sortierung3
 							}
 							else if(args[1].equals("quick"))
 							{
-								//sortiert und misst die Laufzeit für QuickSort
 								measure(array, 2);
+							}
+							else if(args[1].equals("bubble"))
+							{
+							makeRandomArray(array, 3);
 							}
 							else if(args[1].equals("all"))
 							{
-								//sortiert und misst die Laufzeit für alle Sortier Algorithmen
 								measure(array, 0);
 								measure(array, 1);
 								measure(array, 2);
+								measure(array, 3); 
 							}
 							sorted(array);
 							break;
@@ -251,12 +262,16 @@ public class Sortierung3
 							{
 								makeRandomArray(array,2);
 							}
+								else if(args[1].equals("bubble"))
+							{
+							makeRandomArray(array, 3);
+							}
 							else if(args[1].equals("all"))
 							{
-								//sortiert und misst die Laufzeit für alle Sortier Algorithmen
 								measure(array, 0);
 								measure(array, 1);
-								measure(array, 2);	
+								measure(array, 2);
+								measure(array, 3); 
 							}
 							break;
 						//wurde etwas anderes als 'auf', 'ab', 'rand' angegeben, erzeugen wir einen Fehler
