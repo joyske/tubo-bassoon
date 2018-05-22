@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+public class Anwendung
+{
+    public static ArrayList<Interval>intervalScheduling(ArrayList<Interval>intervals)
+    {
+        ArrayList<Interval>result=new ArrayList<Interval>();
+        if(intervals.isEmpty())
+        {
+            System.out.println("Es gibt keine Interval");
+        }
+        else
+        {
+            
+            int j=1;
+            for(int i=2;i<intervals.size();i++)
+            {
+                if(intervals.get(i).getStart()>=intervals.get(j).getEnd())
+                {
+                    result.add(intervals.get(i));
+                    i=j;
+                }
+        
+            }
+        }
+            return result;
+        
+    }
+    public static void main(String[]args)
+    {
+        Interval eins=new Interval(1,3);
+        Interval zwei=new Interval(2,5);
+        Interval drei=new Interval(4,6);
+        Interval vier=new Interval(7,8);
+        Interval fuenf=new Interval(5,9);
+        ArrayList<Interval>teste=new ArrayList<Interval>();
+        teste.add(eins);
+        teste.add(zwei);
+        teste.add(drei);
+        teste.add(vier);
+        teste.add(fuenf);
+        System.out.println(intervalScheduling(teste));
+        
+        
+        
+    }
+}
