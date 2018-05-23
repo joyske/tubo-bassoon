@@ -33,7 +33,28 @@ public class Anwendung
         return result;
         
     }
-	
+	public static int[]latenessScheduling(ArrayList<Job>jobs)
+	{
+		int[]result=new int[jobs.size()];
+		if(jobs.isEmpty())
+		{
+			System.out.println("Es gibt kein Interval!");
+		}
+		else
+		{
+			int n=jobs.size();
+			
+			int z=0;
+			for(int i=0;i<n;i++)
+			{
+				result[i]=z;
+				z=z+jobs.get(i).getDuration();
+			}
+			
+		}
+		return result;
+		
+	}
     public static void main(String[]args) 
     {
 		if(args.length == 2)
@@ -42,7 +63,7 @@ public class Anwendung
 			String mod = args[0];
 			String data = args[1];
 			ArrayList<Interval> teste = new ArrayList<Interval>();
-			ArrayList<Job> teste2 = new ArrayList<Job>();
+			ArrayList<Job>teste2=new ArrayList<Job>();
 			try
 			{
 				BufferedReader file = new BufferedReader( new FileReader( data ) );
@@ -55,9 +76,9 @@ public class Anwendung
 						int start = Integer.parseInt(st.nextToken());
 						int ende = Integer.parseInt(st.nextToken());
 						Interval ivall = new Interval(start, ende);
-						Job ijob = new Job(start, ende);
-						teste2.add(ijob);
+						Job ijobb=new Job(start,ende);
 						teste.add(ivall);
+						teste2.add(ijobb);
 						c++;
 					}
 					catch(NumberFormatException e)
@@ -76,8 +97,18 @@ public class Anwendung
 				}
 				else if(mod.equals("Lateness"))
 				{
+					System.out.println("Bearbeite Datei '" + data + "'.");
+					System.out.println("Es wurden " + c + " Zeilen mit folgendem Inhalt gelesen: " + teste);
+					System.out.print("Sortiert: "); Collections.sort(teste2); System.out.println(teste2);
+					int[]arr=latenessScheduling(teste2);
+					System.out.print("Berechnetes Jobscheduling: [ ");
+					for(int x : arr)
+					{
+						System.out.print( x + ", ");
+					}
+						System.out.print("]");
+					}
 					
-				}
 				else
 				{
 					System.out.println("Bitte als ersten Parameter 'Interval' oder 'Lateness' eingeben!");
@@ -87,11 +118,15 @@ public class Anwendung
 			{
 				System.out.println("Die Datei '" + data +"' konnte nicht gefunden werden!");
 				return;
-			}
+			} 
 			catch (IOException io)
 			{
 				System.out.print("Fehlerhafte Ein- oder Ausgabe!");
 				return;
+			}
+			catch (IllegalArgumentException ill)
+			{
+				System.out.println("Erste Zahl muss kleiner als zweite sein!");
 			}
 		}
 		else
@@ -99,4 +134,6 @@ public class Anwendung
 			System.out.println("Bitte zuerst 'Interval' oder 'Lateness' eingeben, dann den Dateinamen bzw. den Pfad zu der Datei angeben!");
 		}
 	}
+		
+	
 }
