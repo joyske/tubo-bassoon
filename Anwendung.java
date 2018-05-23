@@ -35,10 +35,11 @@ public class Anwendung
     }
     public static void main(String[]args) 
     {
-		if(args.length == 1)
+		if(args.length == 2)
 		{
 			int c = 0;
-			String data = args[0];
+			String mod = args[0];
+			String data = args[1];
 			ArrayList<Interval> teste = new ArrayList<Interval>();
 			try
 			{
@@ -62,10 +63,21 @@ public class Anwendung
 					}
 					zeile = file.readLine();
 				}
-				System.out.println("Bearbeite Datei '" + data + "'.");
-				System.out.println("Es wurden " + c + " Zeilen mit folgendem Inhalt gelesen: " + teste);
-				System.out.print("Sortiert: "); sort(teste); System.out.println(teste);
-				System.out.println("Berechnetes Intervallscheduling: " + intervalScheduling(teste));
+				if(mod.equals("Interval"))
+				{
+					System.out.println("Bearbeite Datei '" + data + "'.");
+					System.out.println("Es wurden " + c + " Zeilen mit folgendem Inhalt gelesen: " + teste);
+					System.out.print("Sortiert: "); sort(teste); System.out.println(teste);
+					System.out.println("Berechnetes Intervallscheduling: " + intervalScheduling(teste));
+				}
+				else if(mod.equals("Lateness"))
+				{
+					
+				}
+				else
+				{
+					System.out.println("Bitte als ersten Parameter 'Interval' oder 'Lateness' eingeben!");
+				}
 			}
 			catch (FileNotFoundException ex)
 			{
@@ -80,7 +92,7 @@ public class Anwendung
 		}
 		else
 		{
-			System.out.println("Bitte den Dateinamen bzw. den Pfad zu der Datei angeben!");
+			System.out.println("Bitte zuerst 'Interval' oder 'Lateness' eingeben, dann den Dateinamen bzw. den Pfad zu der Datei angeben!");
 		}
 	}
 		
