@@ -37,6 +37,7 @@ public class Anwendung
     {
 		if(args.length == 1)
 		{
+			int c = 0;
 			String data = args[0];
 			ArrayList<Interval> teste = new ArrayList<Interval>();
 			try
@@ -52,6 +53,7 @@ public class Anwendung
 						int ende = Integer.parseInt(st.nextToken());
 						Interval ivall = new Interval(start, ende);
 						teste.add(ivall);
+						c++;
 					}
 					catch(NumberFormatException e)
 					{
@@ -60,8 +62,10 @@ public class Anwendung
 					}
 					zeile = file.readLine();
 				}
-				sort(teste);
-				System.out.println(intervalScheduling(teste));
+				System.out.println("Bearbeite Datei '" + data + "'.");
+				System.out.println("Es wurden " + c + " Zeilen mit folgendem Inhalt gelesen: " + teste);
+				System.out.print("Sortiert: "); sort(teste); System.out.println(teste);
+				System.out.println("Berechnetes Intervallscheduling: " + intervalScheduling(teste));
 			}
 			catch (FileNotFoundException ex)
 			{
