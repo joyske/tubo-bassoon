@@ -8,9 +8,8 @@ public class Job implements Comparable<Job>
        
         if(duration<=deadline)
         {
-          h=duration;
-          dl=deadline;
-            
+			h=duration;
+			dl=deadline;
         }
         else
         {
@@ -47,5 +46,5 @@ public class Job implements Comparable<Job>
 		{
 			return -1;
 		}
-    
+    }
 }

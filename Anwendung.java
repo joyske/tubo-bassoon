@@ -36,6 +36,7 @@ public class Anwendung
 	public static int[]latenessScheduling(ArrayList<Job>jobs)
 	{
 		int[]result=new int[jobs.size()];
+		int late = 0;
 		if(jobs.isEmpty())
 		{
 			System.out.println("Es gibt kein Interval!");
@@ -43,14 +44,19 @@ public class Anwendung
 		else
 		{
 			int n=jobs.size();
-			
+			int f = 0;
 			int z=0;
 			for(int i=0;i<n;i++)
 			{
 				result[i]=z;
 				z=z+jobs.get(i).getDuration();
 			}
-			
+			for(int j=0; j < result.length; j++)
+			{
+				f += jobs.get(j).getDuration();
+				late = Math.max(0, f - jobs.get(j).getDeadline());
+			}
+			System.out.println(late);
 		}
 		return result;
 		
@@ -101,14 +107,13 @@ public class Anwendung
 					System.out.println("Es wurden " + c + " Zeilen mit folgendem Inhalt gelesen: " + teste);
 					System.out.print("Sortiert: "); Collections.sort(teste2); System.out.println(teste2);
 					int[]arr=latenessScheduling(teste2);
-					System.out.print("Berechnetes Jobscheduling: [ ");
+					System.out.print("Berechnetes Jobscheduling: [");
 					for(int x : arr)
 					{
 						System.out.print( x + ", ");
 					}
-						System.out.print("]");
-					}
-					
+					System.out.print("]");
+				}	
 				else
 				{
 					System.out.println("Bitte als ersten Parameter 'Interval' oder 'Lateness' eingeben!");

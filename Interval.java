@@ -29,7 +29,7 @@ public class Interval implements Comparable<Interval>
 	
 	public String toString()
 	{
-		String str="["+ s + ", " + e + "]";
+		String str="["+ s + "," + e + "]";
 		return str;
 	}
 	
