@@ -1,4 +1,4 @@
-public class Interval
+public class Interval implements Comparable<Interval>
 {
 	int s;
 	int e;
@@ -31,6 +31,22 @@ public class Interval
 	{
 		String str="["+ s + ", " + e + "]";
 		return str;
+	}
+	
+	public int compareTo(Interval other)
+	{
+		if(this.getEnd() == other.getEnd())
+		{
+			return 0;
+		}
+		else if(this.getEnd() > other.getEnd())
+		{
+			return 1;
+		}
+		else
+		{
+			return -1;
+		}
 	}
 	
 }
