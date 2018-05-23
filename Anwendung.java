@@ -33,6 +33,7 @@ public class Anwendung
         return result;
         
     }
+	
     public static void main(String[]args) 
     {
 		if(args.length == 2)
@@ -41,6 +42,7 @@ public class Anwendung
 			String mod = args[0];
 			String data = args[1];
 			ArrayList<Interval> teste = new ArrayList<Interval>();
+			ArrayList<Job> teste2 = new ArrayList<Job>();
 			try
 			{
 				BufferedReader file = new BufferedReader( new FileReader( data ) );
@@ -53,6 +55,8 @@ public class Anwendung
 						int start = Integer.parseInt(st.nextToken());
 						int ende = Integer.parseInt(st.nextToken());
 						Interval ivall = new Interval(start, ende);
+						Job ijob = new Job(start, ende);
+						teste2.add(ijob);
 						teste.add(ivall);
 						c++;
 					}
@@ -67,7 +71,7 @@ public class Anwendung
 				{
 					System.out.println("Bearbeite Datei '" + data + "'.");
 					System.out.println("Es wurden " + c + " Zeilen mit folgendem Inhalt gelesen: " + teste);
-					System.out.print("Sortiert: "); sort(teste); System.out.println(teste);
+					System.out.print("Sortiert: "); Collections.sort(teste); System.out.println(teste);
 					System.out.println("Berechnetes Intervallscheduling: " + intervalScheduling(teste));
 				}
 				else if(mod.equals("Lateness"))
@@ -93,44 +97,6 @@ public class Anwendung
 		else
 		{
 			System.out.println("Bitte zuerst 'Interval' oder 'Lateness' eingeben, dann den Dateinamen bzw. den Pfad zu der Datei angeben!");
-		}
-	}
-		
-	public static void sort(ArrayList<Interval> list) 
-	{
-		sort(list, 0, list.size() - 1);
-	}
-
-	public static void sort(ArrayList<Interval> list, int from, int to) 
-	{
-		//Sortierung solange links kleiner rechts
-		if (from < to) 
-		{
-			int pivot = from;
-			int left = from + 1;
-			int right = to;
-			int pivotValue = list.get(pivot).getEnd();
-			while (left <= right) 
-			{
-				// left <= to -> Abfrage zur Sicherheit
-				while (left <= to && pivotValue >= list.get(left).getEnd()) 
-				{
-					left++;
-				}
-				// right > from -> Abfrage zur Sicherheit
-				while (right > from && pivotValue < list.get(right).getEnd()) 
-				{
-					right--;
-				}
-				if (left < right) {
-					//Elemente werden getauscht
-					Collections.swap(list, left, right);
-				}
-			}
-			//Pivot ändert sich
-			Collections.swap(list, pivot, left - 1);
-			sort(list, from, right - 1); // <-- Pivot war falsch!
-			sort(list, right + 1, to);   // <-- Pivot war falsch!
 		}
 	}
 }
