@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.*;
+
 public class Anwendung
 {
     public static ArrayList<Interval> intervalScheduling(ArrayList<Interval> intervals)
@@ -25,21 +27,51 @@ public class Anwendung
         return result;
         
     }
-    public static void main(String[]args)
+    public static void main(String[]args) 
     {
-        Interval eins=new Interval(1,13);
-        Interval zwei=new Interval(2,4);
-        Interval drei=new Interval(10,12);
-        Interval vier=new Interval(8,9);
-        Interval fuenf=new Interval(5,7);
-		Interval[] arr = {eins, zwei, drei, vier, fuenf};
-		ArrayList<Interval> teste = new ArrayList<Interval>();
-		for(Interval a : arr)
+		if(args.length == 1)
 		{
-			teste.add(a);
+			String data = args[0];
+			ArrayList<Interval> teste = new ArrayList<Interval>();
+			try
+			{
+				BufferedReader file = new BufferedReader( new FileReader( data ) );
+				String zeile = file.readLine();
+				while(zeile != null)
+				{
+					StringTokenizer st = new StringTokenizer(zeile,",");
+					try
+					{
+						int start = Integer.parseInt(st.nextToken());
+						int ende = Integer.parseInt(st.nextToken());
+						Interval ivall = new Interval(start, ende);
+						teste.add(ivall);
+					}
+					catch(NumberFormatException e)
+					{
+						System.out.println("Ungueltige Eingabe! Bitte so: 'Zahl1,Zahl2'");
+						return;
+					}
+					zeile = file.readLine();
+				}
+				sort(teste);
+				System.out.println(intervalScheduling(teste));
+			}
+			catch (FileNotFoundException ex)
+			{
+				System.out.println("Die Datei '" + data +"' konnte nicht gefunden werden!");
+				return;
+			}
+			catch (IOException io)
+			{
+				System.out.print("Fehlerhafte Ein- oder Ausgabe!");
+				return;
+			}
 		}
-		sort(teste);
-        System.out.println(intervalScheduling(teste));
+		else
+		{
+			System.out.println("Bitte den Dateinamen bzw. den Pfad zu der Datei angeben!");
+		}
 	}
 		
 	public static void sort(ArrayList<Interval> list) 

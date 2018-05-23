@@ -5,8 +5,6 @@ public class Interval
 
 	public Interval(int start, int ende)
 	{	
-		
-		
 		if(start<=ende)
 		{
 			s=start;
