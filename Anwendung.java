@@ -15,13 +15,13 @@ public class Anwendung
         else
         {
             int n = intervals.size();
-			//ertses interval in Liste einfügen, da durch Sortierung
+			//erstes Intervall in Liste einfügen, da durch Sortierung
 			//dieses das früheste Ende hat
 			result.add(intervals.get(0));
             int j=0;
             for(int i=1;i<n;i++)
             {
-				//wenn der Endwert kleiner gleich dem Startwert einses intervals davor(auf Überschneidung prüfen)
+				//wenn der Endwert kleiner gleich dem Startwert einses Intervalls davor(auf Überschneidung prüfen)
                 if(intervals.get(i).getStart()>=intervals.get(j).getEnd())
                 {
 					//ist das der Fall wird das Element der Liste hinzugefügt
@@ -33,7 +33,7 @@ public class Anwendung
         return result;
         
     }
-   public static void main(String[]args) 
+    public static void main(String[]args) 
     {
 		if(args.length == 1)
 		{
@@ -82,7 +82,7 @@ public class Anwendung
 		{
 			System.out.println("Bitte den Dateinamen bzw. den Pfad zu der Datei angeben!");
 		}
-}
+	}
 		
 	public static void sort(ArrayList<Interval> list) 
 	{
@@ -94,14 +94,13 @@ public class Anwendung
 		//Sortierung solange links kleiner rechts
 		if (from < to) 
 		{
-			//pivot ist das erste Element in dem Bereich der sortiert werden soll
 			int pivot = from;
 			int left = from + 1;
 			int right = to;
 			int pivotValue = list.get(pivot).getEnd();
 			while (left <= right) 
 			{
-				// left <= to -> Abfrage zur sicherheit
+				// left <= to -> Abfrage zur Sicherheit
 				while (left <= to && pivotValue >= list.get(left).getEnd()) 
 				{
 					left++;
@@ -111,16 +110,15 @@ public class Anwendung
 				{
 					right--;
 				}
-				if (left < right) 
-				{
+				if (left < right) {
 					//Elemente werden getauscht
 					Collections.swap(list, left, right);
 				}
 			}
-			//pivot ändert sich
+			//Pivot ändert sich
 			Collections.swap(list, pivot, left - 1);
-			sort(list, from, right - 1); // <-- pivot war falsch
-			sort(list, right + 1, to);   // <-- pivot war falsch
+			sort(list, from, right - 1); // <-- Pivot war falsch!
+			sort(list, right + 1, to);   // <-- Pivot war falsch!
 		}
 	}
 }
