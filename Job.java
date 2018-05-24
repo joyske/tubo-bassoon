@@ -4,34 +4,29 @@ public class Job implements Comparable<Job>
     int dl;
 
     public Job(int duration, int deadline)
-    {   
-       
-        if(duration<=deadline)
-        {
-			h=duration;
-			dl=deadline;
-        }
-        else
-        {
-			System.out.println("Dauer muss kleiner als Deadline sein");
-            
-		}
+    { 
+    	h=duration;
+	dl=deadline;      
     }
     
+    //Gettermethode für Dauer
     public int getDuration()
     {
         return h;
     }
+    //Gettermethode für Deadline 
     public int getDeadline()
     {
         return dl;
     }
+    //Methode zum ausprinten 
     public String toString()
     {
         String str="[" + h + "," + dl + "]";
         return str;
     }
-	
+	//Hilfsmethode zum Vergleichen von Job Elementen 
+	//Notwending um sortieren zu können 
 	public int compareTo(Job other)
 	{
 		if(this.getDeadline() == other.getDeadline())
