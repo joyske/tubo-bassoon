@@ -3,6 +3,8 @@ public class Interval implements Comparable<Interval>
 	int s;
 	int e;
 
+	//Konstruktor zm Intervall zu erstellen
+	//Überprüft ob start < ende, denn man kann nicht enden bevor man anfängt 
 	public Interval(int start, int ende)
 	{	
 		if(start<=ende)
@@ -17,22 +19,27 @@ public class Interval implements Comparable<Interval>
 		}
 	}
 	
+	//Gettermethode für Start
 	public int getStart()
 	{
 		return s;
 	}
 	
+	//Gettermethode für Ende 
 	public int getEnd()
 	{
 		return e;
 	}
 	
+	//Printmethode
 	public String toString()
 	{
 		String str="["+ s + "," + e + "]";
 		return str;
 	}
 	
+	//Hilfsmethode zum Vergleichen von Intervall Elementen 
+	//Notwending um sortieren zu können 
 	public int compareTo(Interval other)
 	{
 		if(this.getEnd() == other.getEnd())
