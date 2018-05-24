@@ -97,12 +97,17 @@ public class Anwendung
 						//und in Integer Daten umgewandelt 
 						int start = Integer.parseInt(st.nextToken());
 						int ende = Integer.parseInt(st.nextToken());
+						if(start<ende)
+						{
 						//anschließend werden daraus Intervalle und Jobs gemacht 
 						Interval ivall = new Interval(start, ende);
+						teste.add(ivall);
+						}
 						Job ijobb=new Job(start,ende);
 						//Und in Listen eingefügt 
-						teste.add(ivall);
+						
 						teste2.add(ijobb);
+						
 						//Zeilencounter wird hochgesetzt 
 						c++;
 					}
@@ -126,7 +131,7 @@ public class Anwendung
 				else if(mod.equals("Lateness"))
 				{
 					System.out.println("Bearbeite Datei '" + data + "'.");
-					System.out.println("Es wurden " + c + " Zeilen mit folgendem Inhalt gelesen: " + teste);
+					System.out.println("Es wurden " + c + " Zeilen mit folgendem Inhalt gelesen: " + teste2);
 					System.out.print("Sortiert: "); Collections.sort(teste2); System.out.println(teste2);
 					int[]arr=latenessScheduling(teste2);
 					System.out.print("Berechnetes Jobscheduling: [");
@@ -154,11 +159,7 @@ public class Anwendung
 				System.out.print("Fehlerhafte Ein- oder Ausgabe!");
 				return;
 			}
-			//Fehlermeldung für ungültige Werte 
-			catch (IllegalArgumentException ill)
-			{
-				System.out.println("Erste Zahl muss kleiner als zweite sein!");
-			}
+			
 		}
 	    	//Fehlermeldung für falsche Reihenfolge der Eingabe
 		else
