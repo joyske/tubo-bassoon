@@ -44,6 +44,10 @@ public class Sequence
 	public static void main(String[] args)
 	{
 		int[] arr = {96, 48, 24, 12, 6, 4, 2, 1};
-		System.out.println("Die laengste Sequenz betraegt: " + longestSeq(arr));
+		System.out.println("Die laengste Sequenz betraegt: " + longestSeq(arr) + " (laengste Sequenz am Ende)");
+		int[] arr2 = {20, 18, 9, 2};
+		System.out.println("Die laengste Sequenz betraegt: " + longestSeq(arr2) + " (laengste Sequenz in der Mitte)");
+		int[] arr3 = {12, 6, 4, 2, 1};
+		System.out.println("Die laengste Sequenz betraegt: " + longestSeq(arr3) + " (laengste Sequenz am Anfang)");
 	}
 }
