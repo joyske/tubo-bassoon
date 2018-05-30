@@ -36,13 +36,12 @@ public class LSC {
 		return res.toString();
 	}
 	
-	public static float measure(String X, String Y) {
-		long tStart, tEnd;
-		float msecs; 
+	public static long measure(String X, String Y) {
+		long tStart, tEnd, msecs; 
 		tStart = System.currentTimeMillis();
 		LCSLength(X,Y);
 		tEnd = System.currentTimeMillis();
-		msecs = (float)(tEnd - tStart); 
+		msecs = tEnd - tStart; 
 		return msecs; 
 	}
 	
@@ -140,11 +139,14 @@ public class LSC {
 				System.out.print("Das Programm braucht "+measure(X,Y)+" Millisekunden!");
 			}
 			catch(NumberFormatException e) {
-				System.out.println("Bitte nur eine Zahl eingeben!");
+				System.out.println("Nur eine Zahl eingeben!");
+			}
+			catch (OutOfMemoryError e) {
+            			System.out.println("Kleinere Zahl bitte!");
 			}
 		}
 		else {
-			System.out.println("Bitte einen Parameter eingeben!");
+			System.out.println("Gib eine Zahl ein!");
 		}
 		
 	}
