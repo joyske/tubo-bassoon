@@ -26,7 +26,7 @@ public class LSC {
 		if (i == 0 || j == 0) {
 			C[i][j] = 0; 	
 		}
-		//Wenn es ein Match am selben Index gibt, wird die stelle makiert 
+		//Wenn es ein Match gibt, wird die stelle makiert 
 		//indem man den Wert an der Stelle um 1 erhoet	
 		else if (X.charAt(i-1)==Y.charAt(j-1)) {
 			C[i][j] = C[i-1][j-1] + 1;	
@@ -56,14 +56,15 @@ public class LSC {
 			if (X.charAt(i-1) == Y.charAt(j-1)) {
 				//...wird er in lcs aufgenommen
 				lcs[index] = X.charAt(i-1);
-				//und man schaut sich die Buchstaben davor an 
+				//und man geht diagonall einen weiter hoch  
 				i--; 
 				j--; 
 				index--; 
 			}
 			//Wenn Buchstaben nicht gleich sind 
-			//bestimmen wir den groeßeren der beiden 
-			//und gehen in dessen Richtung weiter 
+			//vergleichen wir L[i-1][j] mit L[i][j-1]  
+			//ist L[i-1][j] springen wir eine Stelle hoch 
+			//wenn nicht dann gehen wir eine Stelle weiter 	
 			else if(L[i-1][j] > L[i][j-1]) {
 				i--; 
 			}
