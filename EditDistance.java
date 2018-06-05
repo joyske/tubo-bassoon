@@ -32,18 +32,21 @@ public class EditDistance
 						int loeschen = d[i + 1][j] + 1;
  
 						int min = ersetzen > einfuegen ? einfuegen : ersetzen;
-						min = delete > min ? min : loeschen;
+						min = loeschen > min ? min : loeschen;
 						d[i + 1][j + 1] = min;
 					}
 			}
 		}
  
 		return d[n][m];
-	}
+}
 
 
 	public static void main(String[]args)
 	{
-		System.out.println(distance("informatics", "interpolation"));
+		if(args.length==2)
+		{
+			System.out.println(distance(args[0],args[1]));
+		}
 	}
 }
