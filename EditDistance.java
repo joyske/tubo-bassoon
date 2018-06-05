@@ -39,14 +39,18 @@ public class EditDistance
 		}
  
 		return d[n][m];
-}
+	}
 
 
 	public static void main(String[]args)
 	{
 		if(args.length==2)
 		{
-			System.out.println(distance(args[0],args[1]));
+			System.out.println("minimale Editierdistanz fuer die Transformation der ersten Eingabe:" + distance(args[0],args[1]));
+		}
+		else
+		{
+			System.out.println("Bitte genau zwei Eingaben!");
 		}
 	}
 }
