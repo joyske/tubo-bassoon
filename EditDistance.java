@@ -28,11 +28,11 @@ public class EditDistance
 					else
 					{
 						int ersetzen = d[i][j] + 1;
-						int einfügen = d[i][j + 1] + 1;
-						int löschen = d[i + 1][j] + 1;
+						int einfuegen = d[i][j + 1] + 1;
+						int loeschen = d[i + 1][j] + 1;
  
-						int min = replace > insert ? insert : replace;
-						min = delete > min ? min : delete;
+						int min = ersetzen > einfuegen ? einfuegen : ersetzen;
+						min = delete > min ? min : loeschen;
 						d[i + 1][j + 1] = min;
 					}
 			}
