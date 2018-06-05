@@ -5,7 +5,6 @@
 #include "vorgabe.h"
 
 chemical_t *ingredients[RECIPE_SIZE];
-chemical_t chemical;
 
 void *work(void *arg)
 {
@@ -27,7 +26,7 @@ void *work(void *arg)
 		//muss sem (die Anzahl der verbleibenen Flaschen im Regal)
 		//dekrementiert werden da ja eine Flasche weniger
 		//zur Verfuegung steht 
-		sem_wait(&chemical.sem);
+		sem_wait(&chemicals[j].sem);
 
 		//dann verarbeiten wir die Chemikalien nacheinander
 		sleep(&chemicals[j].time_needed);  
@@ -40,7 +39,7 @@ void *work(void *arg)
 		//...werden die Chemikalienflaschen wieder zurueck gebracht 
 		//sem wird freigegeben bzw. incrementiert 
 		//da die Chemikalie ja wieder fuer andere Chemiker verfuegbar ist
-		sem_post(&chemical.sem);
+		sem_post(&chemicals[r].sem);
 	      }
 	  }
 }
