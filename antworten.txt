@@ -1,0 +1,38 @@
+(1) In unserem Beispiel sind die Chemikalien das Betriebsmittel.
+	Da sie von den Chemiker Threads nur für eine gewisse Zeit in Anspruch genommen 
+	und anschließend für die Wiederverwendung wieder freigegeben werden, handelt es 
+	sich hier um ein Wiederverwendbares Betriebsmittel. 
+	
+(2) Mutual Exclusion: 4 Chemiker benötigen zur gleichen Zeit Schwefel für ihr Experiment. 3 Chemiker haben Glück 
+	(oder sind einfach schneller) und holen sich die 3 Schwefel Flaschen aus dem Vorrat. Der Vierte kann jetzt nicht 
+	mit seinem Experiment beginnen bevor einer der 3 anderen Chemiker mit seinem Experiment fertig ist und eine Flasche 
+	Schwefel wieder zurück in den Vorratsschrank stellt, denn die Chemiker dürfen sich die Flaschen nicht teilen. Es 
+	darf nur ein Chemiker zur gleichen Zeit mit der selben Flasche arbeiten. 
+	
+	Hold and Wait: Bleiben wir beim Beispiel mit den 4 Schwefel Chemikern. Unser Vierte Chemiker kann nicht darauf warten 
+	dass einer der anderen mit Schwefel fertig ist und es dann einfordern. Er muss warten bis einer seiner Kollegen mit 
+	seinem gesamten Experiment fertig ist und alle seine Chemikalien zurück bringt bevor er sich den ersehnten Schwefel holen 
+	kann. Gleichzeitig haben wir einen fünften Chemiker, der sein Experiment nicht beginnen kann bevor er eine Flasche Phosphor 
+	auftreibt. Leider hat sich Chemiker 6 eine Phosphor Flasche gekrallt und Chemiker 4 hat die andere. Chemiker 5 muss jetzt also 
+	warten bis einer der beiden ihr Experiment beendet (bzw. überhaupt an die Resourcen kommt um es anzufangen und dann zu beenden)
+	bevor er selber anfangen kann. 
+	
+	No preemption: In unserem Labor gilt die Regel "Wer zuerst kommt, mahlt zuerst." Das bedeutet, dass sich der schnellste Chemiker 
+	die Chemikalie nimmt und solange festhält bis er sein Experiment beendet hat, ganz egal ob er selbst noch erst auf die Freigabe 
+	einer anderen Chemikalie warten muss bevor er überhaupt beginnen kann oder ob er einen zweiten Chemiker (der, in der Zeit in der 
+	der erste warten muss, sein Experiment beenden könnte, hätte er die Chemikalie die Chemiker 1 festhält) blockiert. Es gibt keine 
+	Prioritätenfolgen und keine festen Wartezeiten nach denen eine Chemikalie wieder freigegeben werden muss. 
+	
+	Circular wait: Aus den obigen Gegebenheiten entsteht schließlich eine verfahrene Situation in der Chemiker 1 auf Aceton wartet, das von Chemiker 
+	2 festgehalten wird, während dieser auf Wasserstoffperoxid wartet, was wiederrum von Chemiker 3 genommen wurde, der noch Salzsäure braucht, 
+	die sich gerade bei Chemiker 4 befindet, der ja bekanntlich auf Schwefel wartet. Chemiker 5 braucht den Phosphor, den Chemiker 4 hat. Chemiker
+	6 hat auch Phosphor aber er kann nicht beginnen bevor er Wasserstoffperoxid kriegt, der gerade bei Chemiker 1 und Chemiker 3 ist. 
+	
+	Es kommt zum Stillstand im Labor, da alle auf eine Resource warten, die ein anderer hat. 
+	
+(3) Durch den Mutex wird das hold and wait entkräftet, denn jetzt können sich die Chemiker den Vorratsschrank reservieren. Das heißt 1 Chemiker 
+	geht zum Vorratsschrank und holt sich seine Chemikalien - und bevor er nicht alle Chemikalien hat die er benötigt um sofort mit dem 
+	Experimentieren anzufangen, kann keiner seiner Kollegen an die Vorräte ran. Das bedeutet, selbst wenn er mal auf die Freigabe einer Chemikalie 
+	warten muss, so muss er nur warten bis einer seiner Kollegen mit seinem Experiment fertig ist und kann sich die benötigte Chemikalie dann 
+	sofort nehmen, ohne befürchten zu müssen, dass ein anderer Chemiker sie ihm vor der Nase wegschnappt und ihn (und alle die eine oder mehrere 
+	der von ihm gehaltenen Chemikalien benötigen) wieder warten lässt. 
