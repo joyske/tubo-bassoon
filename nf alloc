@@ -1,0 +1,48 @@
+#include "4a.h"
+#include <stdio.h> /* NULL */
+// Hier ggf. weitere Includes
+
+/*
+ * Hier könnt ihr ggf. benötigte globale Varibalen und/oder Hilfsfunktionen ablegen
+ */
+size_t startadress;
+void *nf_alloc(size_t size)
+{
+	size_t i=0;
+	size_t j=0;
+	size_t temp;
+	size_t chunksize=size_to_chunks(size);
+	if(size<=0 || sizeof(heap)<size)
+	{
+		return NULL;
+	}
+	else
+	{
+		while(i<=NUM_CHUNKS)
+		{
+			if(allocation_list[i].length-1>=chunksize && allocation_list[i].status==CHUNK_FREE)
+			{
+				temp=allocation_list[i].length;
+				allocation_list[i].length=chunksize;
+				startadress=i;
+				for(j=startadress;j<=chunksize;j++)
+				{
+					allocation_list[j].status=CHUNK_ALLOCATED;
+				}
+				i += chunksize;
+			}
+			else
+			{
+				i++;
+			}
+			
+				allocation_list[i+chunksize].length=temp-chunksize;
+				allocation_list[i+chunksize].status=CHUNK_FREE;
+				for (size_t k = chunksize+1+i; k<=NUM_CHUNKS; k++) 
+				{
+					allocation_list[k].status=CHUNK_FREE;
+				}
+		}
+		return &startadress;
+	}	
+}
