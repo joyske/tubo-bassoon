@@ -69,7 +69,7 @@ void *nf_alloc(size_t size)
 		
 		//die Addresse des chunks an dem wir angefangen haben zu belegen wird zurückgegeben 
 		//da er die für uns wichtige Information über die Chunkgröße des belegten blocks enthält
-		start = first;
+		start = (void*)first;
 		return start; 
 	} 
 }
