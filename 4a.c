@@ -35,7 +35,7 @@ size_t FirstFit(size_t request)
 void *nf_alloc(size_t size)
 {
 	//da allocation_list in chunks aufgeteilt ist 
-	//brauchen wir auch unsere gewünschte Speichergröße auch in chunks 
+	//brauchen wir auch unsere gewünschte Speichergröße in chunks 
 	chunksize = size_to_chunks(size);
 	
 	//wenn 0 oder etwas größer als unsere heap size angefragt wird 
