@@ -10,7 +10,7 @@ void nf_free(void *addr)
 	size_t j = address-1;
 	size_t zero = 0; 
 	
-	if (addr != NULL) 
+	if (addr != NULL && address != zero) 
 	{
 		if (to_free > zero && allocation_list[address].status == CHUNK_ALLOCATED)
 		{
