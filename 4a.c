@@ -22,11 +22,11 @@ size_t FirstFit(size_t request)
 	{
 		if (i == 0 && allocation_list[i].length == 1) 
 		{
-			i+= allocation_list[i].length;
+			i++;
 		}
 		else if (allocation_list[i].length < request || allocation_list[i].status == CHUNK_ALLOCATED) 
 		{
-			i+= allocation_list[i].length; 
+			i++; 
 		}
 		else 
 		{
@@ -40,24 +40,33 @@ void *nf_alloc(size_t size)
 {
 	//da allocation_list in chunks aufgeteilt ist 
 	//brauchen wir auch unsere gewünschte Speichergröße in chunks 
-	chunksize = size_to_chunks(size);  
+	chunksize = size_to_chunks(size); 
+	first = FirstFit(chunksize); 
 	
 	//wenn 0 oder etwas größer als unsere heap size angefragt wird 
 	//oder es keinen Platz mehr für die Anfrag in unserem heap gibt 
-	if (size == 0 || size > sizeof(heap) || FirstFit(chunksize) > NUM_CHUNKS) 
+	if (size == 0 || size > sizeof(heap) || first > NUM_CHUNKS) 
 	{
 		//... wird die Anfrage ignoriert
 		return NULL; 
 	}
 	else 
 	{
-		first = FirstFit(chunksize); 
+		//die 0. Stelle darf nicht belegt werden  
 		if (first == 0) 
 		{
+			//also wird sie übersprungen
 			first++; 
 		}
+		//und es muss sichergestellt werden, dass unsere Anfrage 
+		//in den freien heap (minus die 0. Stelle) passt
+		else if (first+chunksize > NUM_CHUNKS) 
+		{
+			return NULL; 
+		}	
 		
-		//...ansonsten werden die chunks, in denen unsere Anfrage Platz findet belegt
+		//wenn alle Anforderunen erfüllt sind, 
+		//werden die chunks, in denen unsere Anfrage Platz findet belegt
 		for (size_t i = first; i < NUM_CHUNKS; i++) 
 		{
 			if (i < first+chunksize) 
