@@ -1,28 +1,35 @@
 public class MaxHeap
 {
+	//Attribute
 	int[] arr;
 	int heapSize;
 	
+	//Konstruktor initialisiert die heapSize mit 0, da noch kein Element 
+	//auf dem Heap liegt und legt ein Feld an
 	public MaxHeap(int n)
 	{
 		heapSize = 0;
 		arr = new int[n];
 	}
 	
+	//gibt den Index des linken Kindes für den Knoten am Index i an
 	public int left(int i)
 	{
 		return 2*i;
 	}
 	
+	//gibt den Index des rechten Kindes für den Knoten am Index i an
 	public int right(int i)
 	{
 		return 2*i+1;
 	}
 	
+	//gibt den Index des Elternknotens für den Knoten am Index i an
 	public int parent(int i)
 	{
 		if(i == 0)
 		{
+			//der Knoten am Index i ist die Wurzel und kann daher keinen Elternknoten haben
 			throw new IllegalArgumentException();
 		}
 		else
@@ -31,28 +38,37 @@ public class MaxHeap
 		}
 	}
 	
+	//Methode zur Herstellung der Heap-Eigenschaft
 	public void heapify(int i)
 	{
+		//Variablen für linkes und rechtes Kind des Knotens i
 		int l = left(i);
 		int r = right(i);
 		int max;
+		//wenn linkes Kind von i im Heap liegt und der Wert an dieser Stelle größer ist
+		//als der des Knotens i, setzen wir max auf den Wer des linken Kindes
 		if(l < heapSize && arr[l] > arr[i])
 		{
 			max = l;
 		}
+		//ansonsten bleibt i der größte Wert
 		else
 		{
 			max = i;
 		}
+		//gleiches gilt für das rechte Kind, da auch hier die Heap-Eigenschaft ansonsten verletzt würde
 		if(r < heapSize && arr[r] > arr[max])
 		{
 			max = r;
 		}
+		//ist der Index des größten, gefundenen Wertes verschieden vom betrachteten Index,
+		//so tauschen wir die beiden Werte und erhalten für diesen Teilbaum die Heap-Eigenschaft
 		if(max != i)
 		{
 			int temp = arr[i];
 			arr[i] = arr[max];
 			arr[max] = temp;
+			//anschließend laufen wir rekursiv weiter, da max auch größer als sein Elternknoten sein könnte
 			heapify(max);
 		}
 	}
@@ -104,30 +120,6 @@ public class MaxHeap
 					System.out.println();
 				}
 			}
-		}
-	}
-	
-	public static void main(String[] args)
-	{
-		try
-		{
-			int n = Integer.parseInt(args[0]);
-			MaxHeap heap = new MaxHeap(n);
-			heap.insert(16);
-			heap.insert(14);
-			heap.insert(10);
-			heap.insert(8);
-			heap.insert(7);
-			heap.insert(9);
-			heap.insert(3);
-			heap.insert(2);
-			heap.insert(4);
-			heap.insert(1);
-			heap.printHeap();
-		}
-		catch(IllegalArgumentException e)
-		{
-			System.out.println("Kein Vaterknoten!");
 		}
 	}
 }
