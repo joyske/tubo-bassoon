@@ -75,11 +75,17 @@ public class MaxHeap
 	
 	public void insert(int key)
 	{
+		//das Array darf noch nicht voll sein
 		if(arr.length != heapSize)
 		{
+			//Anzahl der im Heap gespeicherten Elemente wird erhöht
 			heapSize++;
+			//fügen neuen Wert hinter dem zuletzt eingefügten ein
 			int i = heapSize-1;
 			arr[i] = key;
+			//ist der am Ende des Arrays eingefügte Wert, größer als der Wert seines Elternknotens,
+			//wird getauscht, dies geschieht solange bis wir die Heap-Eigenschaft wieder herstellen
+			//konnten
 			while(i > 0)
 			{
 				if(arr[parent(i)] < arr[i])
@@ -93,33 +99,53 @@ public class MaxHeap
 		}
 		else
 		{
+			//ist das Array voll, kann kein weiteres Element eingefügt werden -> Fehlermeldung
 			System.out.println("Element kann nicht eingefuegt werden! Der Heap ist voll.");
 		}
 	}
 	
 	public int extractMax()
 	{
+		//in einem Max-Heap ist das größte Element immer das erste
 		int max = arr[0];
+		//setzen an die erste Stelle, das Element was am Ende des Arrays steht
 		arr[0] = arr[heapSize-1];
+		//Heapsize muss verkleinert werden, da ein Element entfernt wurde
 		heapSize--;
+		//heapify stellt die Heap-Eigenschaft für die Wurzel und somit für den 
+		//kompletten "Baum" wieder her
 		heapify(0);
 		return max;
 	}
 	
 	public void printHeap()
 	{
-		System.out.println(arr[0]);
-		for(int i=1; i<heapSize; i++)
+		if(heapSize > 0)
 		{
-			int p = (int) Math.pow(2,i)-1;
-			for(int j=p; j<=2*p && j<heapSize; j++)
+			//erstes Element wird, unabhängig vom Rest, zuerst ausgegeben
+			System.out.println(arr[0]);
+			for(int i=1; i<heapSize; i++)
 			{
-				System.out.print(arr[j] + " ");
-				if(j == 2*p)
+				//das Element am weitesten links im Baum ist immer am Index (2^i)-1
+				int p = (int) Math.pow(2,i)-1;
+				//starten bei p und laufen bis 2*p, da dies immer der Index des 
+				//letzten Elements der Reihe im Baum ist, außer j ist kleiner als die
+				//Heapsize, dann beenden wir die print-Methode früher
+				for(int j=p; j<=2*p && j<heapSize; j++)
 				{
-					System.out.println();
+					System.out.print(arr[j] + " ");
+					//Zeilenumbruch wenn 2*p erreicht ist
+					if(j == 2*p)
+					{
+						System.out.println();
+					}
 				}
 			}
+		}
+		else
+		{
+			//wenn der Heap kein Element enthält, geben wir einen Fehler aus
+			System.out.println("Keine Elemente zum printen vorhanden!");
 		}
 	}
 }

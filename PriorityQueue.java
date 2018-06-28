@@ -4,9 +4,16 @@ public class PriorityQueue
 	{
 		try
 		{
+			//es müssen mindestens zwei Eingaben gemacht werden, damit das Programm ordnungsgemäß läuft
 			if(args.length == 2)
 			{
 				int n = Integer.parseInt(args[0]);
+				//ist der erste Parameter n 
+				if(n == 0)
+				{
+					System.out.println("Bitte eine Zahl groesser als 0 fuer den ersten Parameter eingeben!");
+					return;
+				}
 				int k = Integer.parseInt(args[1]);
 				MaxHeap heap = new MaxHeap(n+k);
 				for(int i=0; i<n; i++)
