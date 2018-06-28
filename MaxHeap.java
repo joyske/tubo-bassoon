@@ -15,13 +15,13 @@ public class MaxHeap
 	//gibt den Index des linken Kindes für den Knoten am Index i an
 	public int left(int i)
 	{
-		return 2*i;
+		return 2*i+1;
 	}
 	
 	//gibt den Index des rechten Kindes für den Knoten am Index i an
 	public int right(int i)
 	{
-		return 2*i+1;
+		return 2*i+2;
 	}
 	
 	//gibt den Index des Elternknotens für den Knoten am Index i an
@@ -68,6 +68,7 @@ public class MaxHeap
 			int temp = arr[i];
 			arr[i] = arr[max];
 			arr[max] = temp;
+			assert max > i;
 			//anschließend laufen wir rekursiv weiter, da max auch größer als sein Elternknoten sein könnte
 			heapify(max);
 		}
