@@ -31,11 +31,15 @@ public class MinStepCount
 				}
 				else
 				{
-					int w = v;
-					if(Math.max(0,v-1) <= w || w <= Math.min(r,v+1))
+					int min = Integer.MAX_VALUE;
+					for(int w=Math.max(0,v-1); w <= Math.min(r,v+1); w++)
 					{
-						set(i,v,(Math.min(get(i-v,w), w))+1);
+						if(Math.min(get(i-v,w),w) < min)
+						{
+							min = Math.min(get(i-v,w),w);
+						}
 					}
+					set(i,v,min+1);
 				}
 			}
 		}
