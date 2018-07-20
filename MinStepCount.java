@@ -57,6 +57,13 @@ public class MinStepCount
 		return C[i+3][v];
 	}
 	
+	public int[] sequenceOfSteps(int x)
+	{
+		int[] steps = new int[C.length];
+		
+		return steps;
+	}
+	
 	//NUR ZU TESTZWECKEN, NICHT RELEVANT
 	public void show()
 	{
