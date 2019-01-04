@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=mainThread
+comment1.params=port
+comment1.target=mainThread(int)
+comment2.params=
+comment2.target=void\ run()
+comment3.params=b
+comment3.target=void\ progShutDown(boolean)
+comment4.params=
+comment4.target=void\ terminateEveryThread()
+comment5.params=
+comment5.target=void\ closeEverySocket()
+comment6.params=
+comment6.target=void\ codeschschnipsel()
+numComments=7

@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=terminatableThreat
+comment1.params=
+comment1.target=terminatableThreat()
+comment2.params=
+comment2.target=void\ terminate()
+comment3.params=
+comment3.target=boolean\ isterminated()
+comment4.params=
+comment4.target=void\ run()
+numComments=5

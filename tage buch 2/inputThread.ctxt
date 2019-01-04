@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=inputThread
+comment1.params=c
+comment1.target=inputThread(java.net.Socket)
+comment2.params=
+comment2.target=void\ run()
+comment3.params=s\ out
+comment3.target=void\ validate1(java.lang.String,\ java.io.PrintWriter)
+comment4.params=sa
+comment4.target=void\ printArr(java.lang.String[])
+numComments=5

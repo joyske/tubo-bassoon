@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=HttpServer
+comment0.text=\r\n\ Nutzen\ Sie\ diese\ Klasse\ um\ den\ HTTP\ Server\ zu\ implementieren.\ Sie\ duerfen\r\n\ weitere\ Klassen\ erstellen,\ sowie\ Klassen\ aus\ den\ in\ der\ Aufgabe\ aufgelisteten\r\n\ Paketen\ benutzen.\ Achten\ Sie\ darauf,\ Ihren\ Code\ zu\ dokumentieren\ und\ moegliche\r\n\ Ausnahmen\ (Exceptions)\ sinnvoll\ zu\ behandeln.\r\n\r\n\ @author\ Florian\ Barczik,189337\r\n\ @author\ \r\n\ @author\r\n
+comment1.params=port
+comment1.target=HttpServer(int)
+comment1.text=\r\n\ Dokumentation\ fuer\ Konstruktor\:\r\n\ \r\n\ \r\n\ @param\ port\r\n\ \ \ \ \ \ \ \ \ \ \ \ der\ Port\ auf\ dem\ der\ HTTP-Server\ lauschen\ soll\r\n\ @param\ Th(read)l(i)st\r\n\ \ \ \ \ \ \ \ \ \ \ \ wird\ mit\ 0elemeten\ initialisiert\ da\ noch\ kein\ thread\ gestartet\r\n\ @param\ S(ocket)L(i)st\ \ \ \ \ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ \ \ \ \ wird\ mit\ 0elemeten\ initialisiert\ da\ noch\ kein\ socket\ ge\u00F6ffnet\r\n\ @param\ n(ot)s(hut)d(own)t(hread)\ \ \ \ \ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ \ \ \ \ nsdt\ wird\ als\ thread\ zum\ manuel\ abbbruch\ initialisssiert\r\n
+comment2.params=
+comment2.target=void\ startServer()
+comment2.text=\r\n\ Beispiel\ Dokumentation\ fuer\ diese\ Methode\:\r\n\ Diese\ Methode\ oeffnet\ einen\ Port,\ auf\ dem\ der\ HTTP-Server\ lauscht.\r\n\ Eingehende\ Verbindungen\ werden\ in\ einem\ eigenen\ Thread\ behandelt.\r\n
+numComments=3
